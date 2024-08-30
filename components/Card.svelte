@@ -24,9 +24,7 @@
     <h3>{file.basename}</h3>
     <div bind:this={contentDiv} />
     <div class="card-info">
-        {#if file.parent != null && file.parent.path !== '/'}
-            <span use:folderIcon /><span class="folder-name">{file.parent.path}</span>
-        {/if}
+        <span use:folderIcon /><span class="file-name">{file.name}</span>
         <button class="clickable-icon" use:trashIcon on:click|stopPropagation={trashFile} />
     </div>
 </div>
@@ -85,11 +83,16 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: end;
+        justify-content: space-between;
         gap: var(--size-4-1);
     }
 
-    .card .card-info .folder-name {
+    .card .card-info .file-name {
+        font-size: 0.7rem;
+        color: var(--text-muted);
         flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
